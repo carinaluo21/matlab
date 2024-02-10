@@ -29,6 +29,7 @@ V(1) = El;
 % Matlab starts at index 1
 % End at length(t)-1 because you've got i+1 indexes
 for i = 1:length(t)-1
+% Use i indexes
     if V(i)==-0.045
         am=100;
     else
@@ -45,10 +46,11 @@ for i = 1:length(t)-1
     bn=125*exp((-V(i)-0.070)/(0.08));
     dV = (Gl*(El-V(i))+Gnamax*power(m(i),3)*h(i)*(Ena-V(i))+Gkmax*power(n(i),4)*(Ek-V(i))+Iapp)/Cm;
     dm = am*(1-m(i))- bm*m(i);
-    m(i+1) = m(i) + dm * dt;
     dh = ah*(1-h(i))-bh*h(i);
-    h(i+1) = h(i) + dh * dt;
     dn = an*(1-n(i))-bn*n(i);
+% Use i+1 indexes to set the values for the next cycle
+    m(i+1) = m(i) + dm * dt;
+    h(i+1) = h(i) + dh * dt;
     n(i+1) = n(i) + dn * dt;
     V(i+1) = V(i) + dt*dV;
 end
