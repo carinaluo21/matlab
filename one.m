@@ -26,7 +26,7 @@ n = zeros(size(t));
 V(1) = El;
 
 % Main simulation loop
-% Matlab starts at index 1
+% Matlab starts at index 1 and includes the index length(t)-1
 % End at length(t)-1 because you've got i+1 indexes
 for i = 1:length(t)-1
 % Use i indexes
